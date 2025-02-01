@@ -1,6 +1,8 @@
-name: GitHub Actions Demo
+name: GitHub Actions CI/CD
 on:
   push:
+   branches: main
+  pull_request:
    branches: main
    
   workflow_dispatch:
@@ -16,5 +18,5 @@ jobs:
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
-         name: test
+         name: Artifact
          path: ${{github.workspace}}/*  
