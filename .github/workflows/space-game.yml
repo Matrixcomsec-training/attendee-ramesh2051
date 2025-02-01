@@ -20,3 +20,24 @@ jobs:
         with:
          name: Artifact
          path: ${{github.workspace}}/*  
+
+
+  DeployToDev:
+    runs-on: windows-latest
+    needs: Build
+    environment: Dev
+        
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Runs a single command using the runners shell
+      - name: Deploying To Dev for ${{ inputs.ghhandle }}!
+        run: "echo I just deployed to Dev"
+
+  DeployToProd:
+    runs-on: windows-latest
+    needs: DeployToDev
+    environment: Production
+    
+    steps:
+      - name: Deploying To Production for ${{ inputs.ghhandle }}!
+        run: "echo I just deployed to Production"
