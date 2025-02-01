@@ -22,7 +22,10 @@ jobs:
         
       - name: Restore dependencies
         run: dotnet restore
-        working-directory: ./Tailspin.SpaceGame.Web
+        env:
+          DOTNET_SYSTEM_GLOBALIZATION_INVARIANT: true  # Add this line
+          DOTNET_ROOT: /home/runner/.dotnet
+       # working-directory: ./Tailspin.SpaceGame.Web
         
       - name: Build
         run: dotnet build --no-restore
